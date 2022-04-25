@@ -1,0 +1,39 @@
+#title {
+    margin: 2rem;
+    vertical-align: bottom;
+}
+
+#title h1 {
+    font-size: 3rem;
+    font-family: Verdana;
+    display: inline;
+}
+
+#title p {
+    font-size: 2rem;
+    display: inline;
+    vertical-align: center;
+}
+
+.project {
+    margin: 0;
+    padding: 0;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    
+    height: 12vh;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+}
+
+.project img {
+    border-right: 2px solid white;
+    height: 100%;
+    width: auto;
+}
