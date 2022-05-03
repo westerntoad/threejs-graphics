@@ -14,35 +14,13 @@ function initScene() {
   document.body.appendChild( renderer.domElement );
 }
 
-var geometry, red, blue, redCube, blueCube;
+var geometry, material, mesh;
 var points, pMaterial, particleGeometry, particles;
 function initGeometry() {
   geometry = new THREE.BoxGeometry(40, 40, 40);
-  red = new THREE.MeshLambertMaterial( { color: 0xff0000, } );
-  blue = new THREE.MeshLambertMaterial( { color: 0x00ff00, } );
-  redCube = new THREE.Mesh( geometry, red );
-  blueCube = new THREE.Mesh(geometry, blue);
-  scene.add(redCube);
-  scene.add(blueCube);
-  redCube.position.x = 50;
-  blueCube.position.x = -50;
-
-  points = [];
-
-  points.push( new THREE.Vector3(10, 0, 0) );
-  points.push( new THREE.Vector3(0, 0, 0) );
-  points.push( new THREE.Vector3(10, 10, 0) );
-  points.push( new THREE.Vector3(0, 10, 0) );
-
-  particleGeometry = new THREE.BufferGeometry().setFromPoints(points);
-
-  pMaterial = new THREE.PointsMaterial({
-    color: 0xFF00FF,
-    size: 5
-  });
-
-  particles = new THREE.Points(particleGeometry, pMaterial);
-  scene.add(particles);
+  material = new THREE.MeshLambertMaterial( { color: 0xff0000, } );
+  mesh = new THREE.Mesh( geometry, material );
+  scene.add(mesh);
 }
 
 function initLights() {
@@ -58,16 +36,8 @@ function initLights() {
 function render(time) {
   time *= 0.001;
 
-  redCube.rotation.x = time * 0.3;
-  redCube.rotation.y = time * 0.7;
-
-  blueCube.rotation.x = time * 0.6;
-  blueCube.rotation.y = time * 0.9;
-
-  var particleVel = new THREE.Vector2(1, 1);
-
-  particles.geometry.attributes.position.setX(0, particles.geometry.attributes.position.getX(0) + particleVel);
-
+  mesh.rotation.x = time * 0.3;
+  
   renderer.render(scene, camera);
   requestAnimationFrame(render);
 }
@@ -81,7 +51,7 @@ function initListeners() {
   }
   
   window.addEventListener('keydown', event => {
-    if(event.keyCode === 68) {
+    if(event.keyCode === 68) {    // keycode 'd'
       
     }
   }); 
